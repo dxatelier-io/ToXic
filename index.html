@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOXIC — Opening</title>
+
+  <style>
+    :root {
+      --pink-bg: #f6c1d1;
+      --black-text: #0e0e0e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+      background: var(--pink-bg);
+      color: var(--black-text);
+      overflow: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 64px 24px 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 720px;
+    }
+
+    .opening p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 22px;
+    }
+
+    .buttons {
+      margin-top: 56px;
+    }
+
+    button {
+      background: transparent;
+      border: 1.5px solid var(--black-text);
+      color: var(--black-text);
+      padding: 12px 22px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--black-text);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="page">
+    <div class="container opening">
+      <p>Hi, Seftia.</p>
+      <p>Are you here?</p>
+      <p>If you’ve reached this page, it means our time is slowly running out. I’ve been writing this for a long time — words about my struggle ever since I knew you, and fell in love with you.</p>
+      <p>If you’re here now, maybe it also means that the moment for me to let you go is getting closer. It hurts to admit. I always wished these words would never reach you — because that would mean I wouldn’t have to let you go. But… here we are.</p>
+      <p>Before anything else, thank you for staying with me for as long as you did. I don’t know what day we’re on anymore, but I know this much: I was truly happy, because up until this second, you were still here with me.</p>
+      <p>Take your time reading this.</p>
+
+      <div class="buttons">
+        <button onclick="goNext()">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">© xo, delta</div>
+
+  <script>
+    function goNext() {
+      // placeholder for next page (cover)
+      window.location.href = 'cover.html';
+    }
+  </script>
+
+</body>
+</html>
