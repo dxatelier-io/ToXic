@@ -9,15 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       height: 100vh;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
+      background: linear-gradient(to bottom, #0a0a0a, #120b14, #000);
       font-family: 'Inter', sans-serif;
       color: #e5e5e5;
       overflow: hidden;
@@ -29,108 +25,166 @@
       background-image: url('https://grainy-gradients.vercel.app/noise.svg');
       opacity: 0.06;
       pointer-events: none;
-      z-index: 2;
+      z-index: 10;
     }
 
-    .container {
-      position: relative;
-      z-index: 3;
-      height: 100vh;
+    /* ===== COVER ===== */
+    .cover {
+      position: absolute;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 24px;
+      transition: opacity 1.5s ease;
+      z-index: 5;
     }
 
     .title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3.5rem, 10vw, 7rem);
-      font-weight: 700;
       letter-spacing: 0.15em;
-      color: #f2f2f2;
-      text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-      animation: fadeIn 2s ease forwards;
-    }
-
-    .title span {
-      display: inline-block;
-      animation: pulse 6s infinite;
+      text-shadow: 0 0 25px rgba(255,255,255,0.15);
     }
 
     .subtitle {
-      margin-top: 24px;
+      margin-top: 20px;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
       font-style: italic;
-      opacity: 0;
-      animation: fadeInUp 2s ease forwards;
-      animation-delay: 1.2s;
       color: #b3b3b3;
     }
 
-    .line {
-      width: 120px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #777, transparent);
-      margin: 28px auto 0;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards;
-      animation-delay: 2s;
+    .enter {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      opacity: 0.5;
+      animation: blink 2.5s infinite;
+      cursor: pointer;
     }
 
-    .hint {
+    /* ===== QUOTE SCENE ===== */
+    .scene {
       position: absolute;
-      bottom: 32px;
-      width: 100%;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      font-size: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 2s ease;
+      z-index: 3;
+    }
+
+    .scene.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sky {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #050505, #2b0f2b, #3a1c1c);
+      animation: sunset 12s ease forwards;
+      z-index: -1;
+    }
+
+    .petal {
+      position: absolute;
+      top: -10%;
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 182, 193, 0.6);
+      border-radius: 50%;
+      animation: fall linear infinite;
+    }
+
+    .quote {
+      max-width: 700px;
+      padding: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
+      animation-delay: 3s;
+    }
+
+    .start-btn {
+      margin-top: 40px;
+      padding: 12px 28px;
+      background: transparent;
+      border: 1px solid #777;
+      color: #e5e5e5;
       letter-spacing: 0.2em;
-      opacity: 0.4;
-      animation: blink 3s infinite;
+      font-size: 0.75rem;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 9s;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes blink {
+      0%,100%{opacity:.5}50%{opacity:.2}
+    }
+
+    @keyframes sunset {
+      0% { filter: brightness(0.4); }
+      100% { filter: brightness(0.9); }
+    }
+
+    @keyframes fall {
+      to { transform: translateY(120vh); }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
       to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.15; }
     }
   </style>
 </head>
 <body>
   <div class="noise"></div>
 
-  <div class="container">
+  <!-- COVER -->
+  <div class="cover" id="cover">
     <div>
-      <div class="title"><span>TOXIC</span></div>
+      <div class="title">TOXIC</div>
       <div class="subtitle">we say it's over, but it's never</div>
-      <div class="line"></div>
+      <div class="enter" onclick="enterScene()">CLICK / SCROLL TO ENTER</div>
     </div>
+  </div>
 
-    <div class="hint">SCROLL</div>
+  <!-- QUOTE SCENE -->
+  <div class="scene" id="scene">
+    <div class="sky"></div>
+    <div class="quote">“Some loves don’t end.<br>They just learn how to hurt more quietly.”</div>
+    <button class="start-btn" onclick="location.href='chapter1.html'">BEGIN THE BOOK</button>
   </div>
 
   <script>
-    // Subtle parallax effect
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      document.querySelector('.container').style.transform = `translate(${x}px, ${y}px)`;
-    });
+    const cover = document.getElementById('cover');
+    const scene = document.getElementById('scene');
+
+    function enterScene() {
+      cover.style.opacity = 0;
+      setTimeout(() => cover.style.display = 'none', 1500);
+      scene.classList.add('active');
+      createPetals();
+    }
+
+    document.addEventListener('wheel', enterScene, { once: true });
+
+    function createPetals() {
+      for (let i = 0; i < 30; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = 8 + Math.random() * 6 + 's';
+        scene.appendChild(petal);
+      }
+    }
   </script>
 </body>
 </html>
