@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOXIC — Chapter I</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #050505, #0c0a0d, #000);
+      color: #e6e6e6;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 24px 160px;
+    }
+
+    .chapter {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      opacity: 0.6;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 600;
+      margin-bottom: 56px;
+      line-height: 1.3;
+    }
+
+    .text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      opacity: 0;
+      animation: fadeIn 2.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .text p {
+      margin-bottom: 28px;
+    }
+
+    .end-line {
+      margin-top: 80px;
+      height: 1px;
+      width: 120px;
+      background: linear-gradient(to right, transparent, #777, transparent);
+      opacity: 0.4;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+      .actions {
+      display: flex;
+      gap: 16px;
+    }
+
+    .actions button {
+      background: transparent;
+      border: 1px solid #555;
+      color: #e6e6e6;
+      padding: 6px 14px;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    .actions button:hover { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <div class="container">
+    <div class="chapter">CHAPTER I</div>
+    <h1>You Were Beautiful That Day</h1>
+
+    <div class="text">
+      <p>You were beautiful that day, and I fell in love.</p>
+
+      <p>Our first meeting was brief, almost forgettable by ordinary standards. And yet, your face refused to fade the way moments usually do. I thought the feeling would dissolve with time, that distance would do what logic always promises. It didn’t.</p>
+
+      <p>With each passing day, there was always something about you that pulled me deeper. A detail. A gesture. A thought i couldn’t unsee. That was when it crossed my mind, <em>"i am in danger."</em></p>
+
+      <p>Because i knew this pattern too well. I knew what it meant when i began placing my heart in someone’s hands. I knew i was starting to lose myself again.</p>
+
+      <p>Foolishly, instead of stopping, i stayed. Worse, I leaned in. This cursed heart of mine only grew more attached to you, as if it had never learned how to leave.</p>
+    </div>
+
+    <div class="end-line"></div>
+          <div class="nav">
+      <a href="index.html">← BACK</a>
+      <div class="actions">
+        <button onclick="savePDF()">SAVE PDF</button>
+        <button onclick="saveJPEG()">SAVE JPEG</button>
+      </div>
+      <a href="C1b.html">NEXT →</a>
+    </div>
+  </div>
+
+  <style>
+    .nav {
+      margin-top: 120px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      opacity: 0.6;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #e6e6e6;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav a:hover { opacity: 1; }
+
+    /* ===== PRINT / EXPORT ===== */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+      }
+
+      .noise, .nav { display: none; }
+
+      .container {
+        padding: 60px;
+        max-width: 100%;
+      }
+
+      h1, .chapter, .text { color: #000; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    function savePDF() {
+      window.print();
+    }
+
+    function saveJPEG() {
+      html2canvas(document.querySelector('.container'), { backgroundColor: '#000' })
+        .then(canvas => {
+          const link = document.createElement('a');
+          link.download = 'TOXIC_Chapter_I.jpg';
+          link.href = canvas.toDataURL('image/jpeg', 0.95);
+          link.click();
+        });
+    }
+  </script>
+</body>
+</html>
