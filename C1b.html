@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOXIC — Chapter I (continued)</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #040404, #0b0a0d, #000);
+      color: #e6e6e6;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 24px 160px;
+    }
+
+    .chapter {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    .continuation {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      opacity: 0.4;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 2.6rem);
+      font-weight: 600;
+      margin-bottom: 56px;
+      line-height: 1.35;
+    }
+
+    .text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      opacity: 0;
+      animation: fadeIn 2.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .text p { margin-bottom: 28px; }
+
+    .end-line {
+      margin-top: 80px;
+      height: 1px;
+      width: 120px;
+      background: linear-gradient(to right, transparent, #777, transparent);
+      opacity: 0.4;
+    }
+
+    .nav {
+      margin-top: 120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      opacity: 0.6;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #e6e6e6;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav a:hover { opacity: 1; }
+
+    .actions {
+      display: flex;
+      gap: 16px;
+    }
+
+    .actions button {
+      background: transparent;
+      border: 1px solid #555;
+      color: #e6e6e6;
+      padding: 6px 14px;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    .actions button:hover { opacity: 1; }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .noise, .nav { display: none; }
+      .container { padding: 60px; max-width: 100%; }
+      h1, .chapter, .text { color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <div class="container">
+    <div class="chapter">CHAPTER I</div>
+    <div class="continuation">CONTINUED</div>
+    <h1>You Were Even More Beautiful the Second Time</h1>
+
+    <div class="text">
+      <p>I felt something shift the second time i met you.</p>
+
+      <p>And damn it, it wasn’t fading. If anything, my feelings only grew heavier. You looked even more beautiful than before. My heart began to lose its rhythm when you spoke. My eyes betrayed me, they could no longer hold your gaze when you looked back at me.</p>
+
+      <p>I started to feel an unreasonable happiness every time your name appeared on my screen. I caught myself waiting and counting days for the next moment our paths would cross again.</p>
+
+      <p>And sometimes, i wondered, do you feel this too? Or is this longing mine alone?</p>
+    </div>
+
+    <div class="end-line"></div>
+
+    <div class="nav">
+      <a href="chapter1.html">← BACK</a>
+      <div class="actions">
+        <button onclick="window.print()">SAVE PDF</button>
+      </div>
+      <a href="chapter2.html">NEXT →</a>
+    </div>
+  </div>
+</body>
+</html>
