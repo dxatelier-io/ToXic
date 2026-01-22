@@ -3,230 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TOXIC — Opening</title>
+  <title>TOXIC — we say it's over but it's never</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --pink-bg: #f4b7c7;
-      --black-text: #0b0b0b;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    * { box-sizing: border-box; }
-
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
-      background: var(--pink-bg);
-      color: var(--black-text);
+      height: 100vh;
+      background: radial-gradient(circle at top, #1a1a1a, #000);
+      font-family: 'Inter', sans-serif;
+      color: #e5e5e5;
       overflow: hidden;
     }
 
-    /* subtle moving grain */
-    body::before {
-      content: "";
+    .noise {
       position: fixed;
       inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,0.02),
-        rgba(0,0,0,0.02) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      animation: grain 8s linear infinite;
+      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.06;
       pointer-events: none;
+      z-index: 2;
     }
 
-    @keyframes grain {
-      from { transform: translateY(0); }
-      to { transform: translateY(-200px); }
-    }
-
-    .page {
-      min-height: 100vh;
+    .container {
+      position: relative;
+      z-index: 3;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 64px 24px 96px;
+      text-align: center;
+      padding: 24px;
     }
 
-    .container {
-      max-width: 720px;
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #f2f2f2;
+      text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+      animation: fadeIn 2s ease forwards;
     }
 
-    .opening p {
-      font-size: 1.05rem;
-      line-height: 1.9;
-      margin-bottom: 24px;
+    .title span {
+      display: inline-block;
+      animation: pulse 6s infinite;
+    }
+
+    .subtitle {
+      margin-top: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-style: italic;
       opacity: 0;
-      transform: translateY(16px);
-      animation: reveal 0.9s ease forwards;
+      animation: fadeInUp 2s ease forwards;
+      animation-delay: 1.2s;
+      color: #b3b3b3;
     }
 
-    .opening p:nth-child(1) { animation-delay: 0.4s; }
-    .opening p:nth-child(2) { animation-delay: 0.8s; }
-    .opening p:nth-child(3) { animation-delay: 1.4s; }
-    .opening p:nth-child(4) { animation-delay: 2.0s; }
-    .opening p:nth-child(5) { animation-delay: 2.6s; }
-    .opening p:nth-child(6) { animation-delay: 3.2s; }
-
-    @keyframes reveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .buttons {
-      margin-top: 64px;
+    .line {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #777, transparent);
+      margin: 28px auto 0;
       opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 3.8s;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 2s;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 32px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      opacity: 0.4;
+      animation: blink 3s infinite;
     }
 
     @keyframes fadeIn {
+      from { opacity: 0; }
       to { opacity: 1; }
     }
 
-    button {
-      background: transparent;
-      border: none;
-      color: var(--black-text);
-      font-size: 0.95rem;
-      letter-spacing: 1.5px;
-      cursor: pointer;
-      position: relative;
-      padding: 8px 0;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    button::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 1px;
-      background: var(--black-text);
-      transition: width 0.4s ease;
-    }
-
-    button:hover::after {
-      width: 100%;
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      font-size: 0.75rem;
-      opacity: 0.5;
-    }
-
-    /* blinking cursor after last line */
-    .cursor::after {
-      content: "▍";
-      animation: blink 1.2s steps(2) infinite;
-      margin-left: 4px;
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
     }
 
     @keyframes blink {
-      50% { opacity: 0; }
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.15; }
     }
   </style>
 </head>
 <body>
+  <div class="noise"></div>
 
-  <section class="page">
-    <div class="container opening">
-      <p>Hi, Seftia.</p>
-      <p>Are you here?</p>
-      <p>If you’ve reached this page, it means our time is slowly running out. I’ve been writing this for a long time, words about my struggle ever since i knew you and fell in love with you.</p>
-      <p>If you’re here now, maybe it also means that the moment for me to let you go is getting closer. I always wished these words would never reach you, because that would mean i wouldn’t have to let you go ehehe. But here we are.</p>
-      <p>Before anything else, thank you for staying with me for as long as you did. I don’t know what day we’re on anymore, but i know this much, i was truly happy because up until this second, you were still here with me.</p>
-      <p class="cursor">Take your time reading this</p>
-
-      <div class="buttons">
-        <button onclick="goNext()">CONTINUE</button>
-      </div>
+  <div class="container">
+    <div>
+      <div class="title"><span>TOXIC</span></div>
+      <div class="subtitle">we say it's over, but it's never</div>
+      <div class="line"></div>
     </div>
-  </section>
 
-  <div class="footer">© xo, delta</div>
+    <div class="hint">SCROLL</div>
+  </div>
 
   <script>
-    function goNext() {
-      window.location.href = 'cover.html';
-    }
+    // Subtle parallax effect
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      document.querySelector('.container').style.transform = `translate(${x}px, ${y}px)`;
+    });
   </script>
-
-</body>
-</html>      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .container {
-      max-width: 720px;
-    }
-
-    .opening p {
-      font-size: 1.05rem;
-      line-height: 1.9;
-      margin-bottom: 22px;
-    }
-
-    .buttons {
-      margin-top: 56px;
-    }
-
-    button {
-      background: transparent;
-      border: 1.5px solid var(--black-text);
-      color: var(--black-text);
-      padding: 12px 22px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    button:hover {
-      background: var(--black-text);
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      font-size: 0.75rem;
-      opacity: 0.6;
-    }
-  </style>
-</head>
-<body>
-
-  <section class="page">
-    <div class="container opening">
-      <p>Hi, Seftia.</p>
-      <p>Are you here?</p>
-      <p>If you’ve reached this page, it means our time is slowly running out. I’ve been writing this for a long time, words about my struggle ever since i knew you, and fell in love with you.</p>
-      <p>If you’re here now, maybe it also means that the moment for me to let you go is getting closer. It hurts to admit. I always wished these words would never reach you, because that would mean i wouldn’t have to let you go ehehe. But… here we are.</p>
-      <p>Before anything else, thank you for staying with me for as long as you did. I don’t know what day we’re on anymore, but i know this much... i was truly happy because up until this second, you were still here with me.</p>
-      <p>Take your time reading this.</p>
-
-      <div class="buttons">
-        <button onclick="goNext()">Continue</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer">© xo, delta</div>
-
-  <script>
-    function goNext() {
-      // placeholder for next page (cover)
-      window.location.href = 'cover.html';
-    }
-  </script>
-
 </body>
 </html>
